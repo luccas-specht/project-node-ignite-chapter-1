@@ -4,7 +4,10 @@ const { v4: uuidV4 } = require('uuid');
 const app = express();
 
 app.use(express.json());
-app.listen(3333);
+
+app.listen(3333, () => {
+  console.log('Server Started in port: 3333');
+});
 
 const customers = [];
 
@@ -89,4 +92,18 @@ app.get('/statement', verifyIfExistsAccountCPF, (request, response) => {
   const { customer } = request;
 
   return response.status(200).json({ clientStatement: customer.statement });
+});
+
+app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+  const { date } = request.query;
+
+  const dateFormat = new Date(date + ' 00:00');
+
+  const statement = customer.statement.filter(
+    (statement) =>
+      statement.create_at.toDateString() === new Date(dateFormat).toDateString()
+  );
+
+  return response.status(200).json({ statement });
 });
