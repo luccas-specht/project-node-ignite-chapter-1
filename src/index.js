@@ -1,53 +1,50 @@
+const express = require('express');
+const { v4: uuidV4 } = require('uuid');
 
-const express = require('express')
-const { v4: uuidV4 } = require('uuid')
+const app = express();
 
-const app = express()
+app.use(express.json());
+app.listen(3333);
 
-app.use(express.json())
-app.listen(3333)
+const customers = [];
 
-/**
- * cpf - string
- * name - string
- * id - uuid (universally unique identifier)
- * statement []
- */
+// Middleware
+function verifyIfExistsAccountCPF(request, response, next) {
+  const { cpf } = request.headers;
+  const customer = customers.find((customer) => customer.cpf === cpf);
 
-const customers = []
+  if (!customer)
+    return response.status(400).json({ message: 'customer not found' });
 
+  request.customer = customer;
+  return next();
+}
 
 app.post('/account', (request, response) => {
-    const { name, cpf } = request.body
+  const { name, cpf } = request.body;
+  const customerAlreadyExists = customers.some(
+    (customer) => customer.cpf === cpf
+  );
 
-    const customerAlreadyExists = customers.some((customer)=> customer.cpf === cpf)
+  if (customerAlreadyExists)
+    return response.status(400).json({
+      message: 'customer already exists',
+    });
 
-    if(customerAlreadyExists)  
-        return response.status(400).json({
-            message: "customer already exists"
-        })
-    
+  customers.push({
+    id: uuidV4(),
+    cpf,
+    name,
+    statement: [],
+  });
 
-    customers.push({
-        id: uuidV4(),
-        cpf, 
-        name,
-        statement: []
-    })
+  return response.status(201).send();
+});
 
-    return response.status(201).send()
-})
+app.get('/statement', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
 
-app.get('/statement', (request, response) => {
-    const headers = request.headers
-
-    const customer = customers.find((customer) => customer.cpf === headers.cpf)  
-
-    if(!customer) 
-      return response.status(400).json({ message: "customer not found"})
-
-    return response.status(200).json({
-        clientStatement: customer.statement
-    })
-})
-
+  return response.status(200).json({
+    clientStatement: customer.statement,
+  });
+});
