@@ -1,0 +1,361 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-12-04T02:22:21.869Z",
+  "__export_source": "insomnia.desktop.app:v2021.6.0",
+  "resources": [
+    {
+      "_id": "req_f1a6aad7ab1a4523bcea3d1f44ccd0c6",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638582807012,
+      "created": 1638582775156,
+      "url": "{{ _.baseURL }}/balance/me",
+      "name": "Get balance customer",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_52cc48e90e484191adcec4caa5bfca90",
+          "name": "cpf",
+          "value": "12233",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638582775194,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_7ea03ff9daee4229ac69116195562017",
+      "parentId": null,
+      "modified": 1638479968937,
+      "created": 1638479968937,
+      "name": "projeto-node-ignite-chapter-1 FinAPI",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_3205938a19c74609a509cc471994ee57",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638580853721,
+      "created": 1638579454470,
+      "url": "{{ _.baseURL }}/account",
+      "name": "Delete account",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_5a20b268aaf04db68b2d4e5b23731a0c",
+          "name": "cpf",
+          "value": "90182182791",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638579454509,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_b71314bd7c81482e9323d0402dbc965a",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638582857604,
+      "created": 1638480023082,
+      "url": "{{ _.baseURL }}/account",
+      "name": "Create account",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"cpf\": \"12233\",\n\t\"name\": \"gabriel pato\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_7fc6ee14ae93445d88e90eac50da86fa",
+          "disabled": false
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070819,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_895573f1fe974e82952dc1467cf48b15",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638582863598,
+      "created": 1638499605126,
+      "url": "{{ _.baseURL }}/deposit",
+      "name": "Add deposit",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"amount\": 500.00,\n\t\"description\": \"trasnf muitooo crazyy\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_0e59eda47a1f473f9d266ca970f08a56"
+        },
+        {
+          "id": "pair_b555a51d62744af78ea55ac40b8e63c6",
+          "name": "cpf",
+          "value": "12233",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070806.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_5c6217d7918e48c89794d54003330028",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638582868953,
+      "created": 1638502800140,
+      "url": "{{ _.baseURL }}/withdraw",
+      "name": "Withdraw",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"amount\": 100\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_86071efa1cde4649be62e53ff646f085"
+        },
+        {
+          "id": "pair_49cb2a6414c94f80a3d66b472a5bbdb5",
+          "name": "cpf",
+          "value": "12233",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070794,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_89f6154fdbee4edf984e796b95b4e408",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638577089381,
+      "created": 1638481598476,
+      "url": "{{ _.baseURL }}/statement",
+      "name": "Get statement by client cpf",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_c58192aaaa2b4b0b82baf1e203cc91a0",
+          "name": "cpf",
+          "value": "12233",
+          "description": "",
+          "disabled": false
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070781.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_76536ea9f8e44233b1448c03da12cb73",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638577080177,
+      "created": 1638576070769,
+      "url": "{{ _.baseURL }}/statement/date",
+      "name": "Get customer statement by date",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_6c3cf3c0418942959e30c5caf872d1fa",
+          "name": "date",
+          "value": "2021-12-04",
+          "description": ""
+        }
+      ],
+      "headers": [
+        {
+          "id": "pair_e3c665ca052047a2988f2d8db595c3ba",
+          "name": "Content-Type",
+          "value": "application/json",
+          "description": ""
+        },
+        {
+          "id": "pair_5facf727e8aa438a84e731d4cb4a1094",
+          "name": "cpf",
+          "value": "12233",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070769,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4f2b93e56791461eadc7b7cb4092c284",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638579009163,
+      "created": 1638578979426,
+      "url": "{{ _.baseURL }}/customer/me",
+      "name": "Get customer data by cpf",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_22191be58d4b48cc9b29f135c17df50a",
+          "name": "cpf",
+          "value": "12233",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070744,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_d0510aab78ab4d8198d2305ae7dcfa3e",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638579043526,
+      "created": 1638578471826,
+      "url": "{{ _.baseURL }}/account",
+      "name": "Update customer name",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"marcelinho o pimentinha da turma\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_ffb6c303ab8e40fabe7695857d88c26a",
+          "name": "cpf",
+          "value": "12233",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_3aacca5936884339abe683cb8418e77f"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1638576070719,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_49dedb45473e43a6cffeedb23c630098c3a136f2",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638479997429,
+      "created": 1638479968942,
+      "name": "Base Environment",
+      "data": { "baseURL": "http://localhost:3333" },
+      "dataPropertyOrder": { "&": ["baseURL"] },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1638479968942,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_49dedb45473e43a6cffeedb23c630098c3a136f2",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638479968944,
+      "created": 1638479968944,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_f162aaf462f8423b945d52bc6c7c633e",
+      "parentId": "wrk_7ea03ff9daee4229ac69116195562017",
+      "modified": 1638479968938,
+      "created": 1638479968938,
+      "fileName": "projeto-node-ignite-chapter-1 FinAPI",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
