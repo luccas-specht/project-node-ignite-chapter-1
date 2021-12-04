@@ -9,7 +9,7 @@ app.listen(3333, () => {
   console.log('Server Started in port: 3333');
 });
 
-const customers = [];
+let customers = [];
 
 // Middleware
 function verifyIfExistsAccountCPF(request, response, next) {
@@ -143,4 +143,14 @@ app.get('/customer/me', verifyIfExistsAccountCPF, (request, response) => {
     name,
     statement,
   });
+});
+
+app.delete('/account', verifyIfExistsAccountCPF, (request, response) => {
+  const {
+    customer: { id: customerIdToDelete },
+  } = request;
+
+  customers = customers.filter(({ id }) => id !== customerIdToDelete);
+
+  return response.json(customers);
 });
