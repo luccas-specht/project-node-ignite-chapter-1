@@ -122,3 +122,25 @@ app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
   // by default when a request is success your status code is 200, then we don't need to inform it
   return response.json({ statement });
 });
+
+app.patch('/account', verifyIfExistsAccountCPF, (request, response) => {
+  const {
+    customer,
+    body: { name },
+  } = request;
+
+  customer.name = name;
+
+  return response.send();
+});
+
+app.get('/customer/me', verifyIfExistsAccountCPF, (request, response) => {
+  const {
+    customer: { name, statement },
+  } = request;
+
+  return response.json({
+    name,
+    statement,
+  });
+});
