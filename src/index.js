@@ -13,7 +13,9 @@ const customers = [];
 
 // Middleware
 function verifyIfExistsAccountCPF(request, response, next) {
-  const { cpf } = request.headers;
+  const {
+    headers: { cpf },
+  } = request;
   const customer = customers.find((customer) => customer.cpf === cpf);
 
   if (!customer)
@@ -34,7 +36,12 @@ function getBalance(statement) {
 }
 
 app.post('/account', (request, response) => {
-  const { name, cpf } = request.body;
+  const {
+    capital = 'não informado',
+    body: { name, cpf },
+  } = request;
+  console.log('capital::', capital);
+
   const customerAlreadyExists = customers.some(
     (customer) => customer.cpf === cpf
   );
@@ -55,14 +62,17 @@ app.post('/account', (request, response) => {
 });
 
 app.post('/deposit', verifyIfExistsAccountCPF, (request, response) => {
-  const { customer } = request;
-  const { amount, description } = request.body;
+  // Deconstruction in JS clean code: https://www.youtube.com/watch?v=_17mgcmmHFU&list=LL&index=1 😊
+  const {
+    customer,
+    body: { amount, description },
+  } = request;
 
   const statementOperation = {
     amount,
     description,
     type: 'credit',
-    create_at: new Date(),
+    created_at: new Date(),
   };
 
   customer.statement.push(statementOperation);
@@ -70,8 +80,10 @@ app.post('/deposit', verifyIfExistsAccountCPF, (request, response) => {
 });
 
 app.post('/withdraw', verifyIfExistsAccountCPF, (request, response) => {
-  const { customer } = request;
-  const { amount } = request.body;
+  const {
+    customer,
+    body: { amount },
+  } = request;
 
   const balance = getBalance(customer.statement);
 
@@ -81,7 +93,7 @@ app.post('/withdraw', verifyIfExistsAccountCPF, (request, response) => {
   const statementOperation = {
     amount,
     type: 'debit',
-    create_at: new Date(),
+    created_at: new Date(),
   };
 
   customer.statement.push(statementOperation);
@@ -95,15 +107,18 @@ app.get('/statement', verifyIfExistsAccountCPF, (request, response) => {
 });
 
 app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
-  const { customer } = request;
-  const { date } = request.query;
+  const {
+    customer,
+    query: { date },
+  } = request;
 
-  const dateFormat = new Date(date + ' 00:00');
+  const dateFormat = new Date(date);
 
   const statement = customer.statement.filter(
     (statement) =>
-      statement.create_at.toDateString() === new Date(dateFormat).toDateString()
+      statement.created_at.toDateString() === dateFormat.toDateString()
   );
 
-  return response.status(200).json({ statement });
+  // por default quando uma request da success o ststaus já é 200, então não precisamos informar
+  return response.json({ statement });
 });
