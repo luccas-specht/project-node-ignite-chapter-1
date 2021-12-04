@@ -123,17 +123,6 @@ app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
   return response.json({ statement });
 });
 
-app.patch('/account', verifyIfExistsAccountCPF, (request, response) => {
-  const {
-    customer,
-    body: { name },
-  } = request;
-
-  customer.name = name;
-
-  return response.send();
-});
-
 app.get('/customer/me', verifyIfExistsAccountCPF, (request, response) => {
   const {
     customer: { name, statement },
@@ -143,6 +132,27 @@ app.get('/customer/me', verifyIfExistsAccountCPF, (request, response) => {
     name,
     statement,
   });
+});
+
+app.get('/balance/me', verifyIfExistsAccountCPF, (request, response) => {
+  const {
+    customer: { statement },
+  } = request;
+
+  const balance = getBalance(statement);
+
+  return response.json({ costumerBalance: balance });
+});
+
+app.patch('/account', verifyIfExistsAccountCPF, (request, response) => {
+  const {
+    customer,
+    body: { name },
+  } = request;
+
+  customer.name = name;
+
+  return response.send();
 });
 
 app.delete('/account', verifyIfExistsAccountCPF, (request, response) => {
