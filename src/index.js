@@ -119,6 +119,6 @@ app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
       statement.created_at.toDateString() === dateFormat.toDateString()
   );
 
-  // por default quando uma request da success o ststaus já é 200, então não precisamos informar
+  // by default when a request is success your status code is 200, then we don't need to inform it
   return response.json({ statement });
 });
